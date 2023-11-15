@@ -1,9 +1,9 @@
 #include <fstream>
 #include <sstream>
-#include "StateMinimization.hpp"
+#include "Kiss.hpp"
 
 void readKiss(std::vector<implicantData> &implicants,
-              kissData &kissData,
+              kissData &kiss,
               std::string const &fileName)
 {
     std::string lineData;
@@ -28,27 +28,27 @@ void readKiss(std::vector<implicantData> &implicants,
 
         else if (command == ".i")
         {
-            ss >> kissData.input;
+            ss >> kiss.input;
         }
 
         else if (command == ".o")
         {
-            ss >> kissData.output;
+            ss >> kiss.output;
         }
 
         else if (command == ".p")
         {
-            ss >> kissData.p;
+            ss >> kiss.p;
         }
 
         else if (command == ".s")
         {
-            ss >> kissData.r;
+            ss >> kiss.r;
         }
 
         else if (command == ".r")
         {
-            ss >> kissData.r;
+            ss >> kiss.r;
         }
 
         else
