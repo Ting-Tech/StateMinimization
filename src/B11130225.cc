@@ -1,22 +1,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "KissHandler.hpp"
 
 using namespace std;
 
-struct
+int main(int argc, char *argv[])
 {
-    int i;
-    int o;
-    int p;
-    int s;
-    char r;
-    vector<int> input;
-    vector<int> output;
-    vector<char> currentState;
-    vector<char> nextState;
-} kissData;
-
-int main()
-{
+    vector<implicantData> implicantTable;
 }

@@ -1,0 +1,2 @@
+/Users/chengchienting/GitHub/StateMinimization/build/CMakeFiles/edit_cache.dir
+/Users/chengchienting/GitHub/StateMinimization/build/CMakeFiles/rebuild_cache.dir
