@@ -23,7 +23,7 @@ void readKiss(std::vector<implicantData> &implicants,
         }
         else if (command == ".end_kiss")
         {
-            continue;
+            break;
         }
 
         else if (command == ".i")
@@ -53,12 +53,13 @@ void readKiss(std::vector<implicantData> &implicants,
 
         else
         {
-            int in;
+            string in;
             char current;
             char next;
             int out;
             ss >> in >> current >> next >> out;
             implicants.push_back(implicantData(in, current, next, out));
+            kiss.implicants = implicants;
         }
     }
 }
