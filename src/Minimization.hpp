@@ -1,31 +1,27 @@
 #include "Kiss.hpp"
+#include "Table.hpp"
 
-vector<vector<tableDataPair>> buildTable(kissData &kiss)
+vector<vector<ProductTerm>> buildTable(kissData &kiss)
 {
-    char lastState = kiss.implicants[0].currentState;
-    vector<tableDataPair> state;
-    vector<vector<tableDataPair>> states;
+    char lastState = kiss.productTerms[0].currentState;
+    vector<vector<ProductTerm>> states;
 
-    for (auto implicantsIndex : kiss.implicants)
+    for (size_t i = 0; i < kiss.s; i++)
     {
-        if (implicantsIndex.currentState != lastState)
+        vector<ProductTerm> state;
+        for (size_t j = 0; j < (kiss.p / kiss.s); j++)
         {
-            states.push_back(state);
-            vector<tableDataPair> state;
+            ProductTerm productTerm;
+            productTerm = kiss.productTerms[i * kiss.s + j];
+            state.push_back(productTerm);
         }
-        else
-        {
-            tableDataPair statePair;
-            statePair.nextState = implicantsIndex.currentState;
-            statePair.out = implicantsIndex.output;
-            state.push_back(statePair);
-        }
+        states.push_back(state);
     }
 
     return states;
 }
 
 vector<vector<implicantTableDataPair>>
-buildImplicantTable(vector<vector<tableDataPair>> const &table)
+buildImplicantTable(vector<vector<ProductTerm>> const &table)
 {
 }

@@ -2,7 +2,7 @@
 #include <sstream>
 #include "Kiss.hpp"
 
-void readKiss(std::vector<implicantData> &implicants,
+void readKiss(std::vector<ProductTerm> &implicants,
               kissData &kiss,
               std::string const &fileName)
 {
@@ -58,8 +58,8 @@ void readKiss(std::vector<implicantData> &implicants,
             char next;
             int out;
             ss >> in >> current >> next >> out;
-            implicants.push_back(implicantData(in, current, next, out));
-            kiss.implicants = implicants;
+            implicants.push_back(ProductTerm(in, current, next, out));
+            kiss.productTerms = implicants;
         }
     }
 }

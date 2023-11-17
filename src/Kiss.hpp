@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
 
-class implicantData
+class ProductTerm
 {
 public:
     string input;
@@ -9,8 +9,8 @@ public:
     char nextState;
     int output;
 
-    implicantData() {}
-    implicantData(string i, char c, char n, int o)
+    ProductTerm() {}
+    ProductTerm(string i, char c, char n, int o)
         : input(i), currentState(c), nextState(n), output(o) {}
 };
 
@@ -21,26 +21,5 @@ struct kissData
     int p;
     int s;
     char r;
-    std::vector<implicantData> implicants;
-};
-
-class tableDataPair
-{
-public:
-    char nextState;
-    int out;
-
-    tableDataPair() {}
-    tableDataPair(char n, int o) : nextState(n), out(o) {}
-};
-
-class implicantTableDataPair
-{
-public:
-    bool minimize;
-    vector<char> nextStates;
-
-    implicantTableDataPair() {}
-    implicantTableDataPair(bool m, vector<char> n)
-        : minimize(m), nextStates(n) {}
+    std::vector<ProductTerm> productTerms;
 };
