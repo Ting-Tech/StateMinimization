@@ -33,3 +33,14 @@ public:
     tableDataPair() {}
     tableDataPair(char n, int o) : nextState(n), out(o) {}
 };
+
+class implicantTableDataPair
+{
+public:
+    bool minimize;
+    vector<char> nextStates;
+
+    implicantTableDataPair() {}
+    implicantTableDataPair(bool m, vector<char> n)
+        : minimize(m), nextStates(n) {}
+};

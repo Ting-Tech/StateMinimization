@@ -24,3 +24,8 @@ vector<vector<tableDataPair>> buildTable(kissData &kiss)
 
     return states;
 }
+
+vector<vector<implicantTableDataPair>>
+buildImplicantTable(vector<vector<tableDataPair>> const &table)
+{
+}
