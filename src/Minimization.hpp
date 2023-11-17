@@ -22,6 +22,17 @@ vector<vector<ProductTerm>> buildTable(kissData &kiss)
 }
 
 vector<vector<implicantTableDataPair>>
-buildImplicantTable(vector<vector<ProductTerm>> const &table)
+buildImplicantTable(vector<vector<ProductTerm>> const &table, kissData &kiss)
 {
+    vector<vector<implicantTableDataPair>> implicantTable[kiss.s][kiss.s];
+
+    for (size_t i = 1; i < kiss.s; i++)
+    {
+        for (size_t j = 0; j < kiss.s; j++)
+        {
+            // implicantTable[i][j] = ;
+        }
+    }
+
+    // return implicantTable;
 }
