@@ -24,15 +24,33 @@ vector<vector<ProductTerm>> buildTable(kissData &kiss)
 vector<vector<implicantTableDataPair>>
 buildImplicantTable(vector<vector<ProductTerm>> const &table, kissData &kiss)
 {
-    vector<vector<implicantTableDataPair>> implicantTable[kiss.s][kiss.s];
+    vector<vector<implicantTableDataPair>>
+        implicantTable(kiss.s,
+                       vector<implicantTableDataPair>(
+                           kiss.s,
+                           implicantTableDataPair(false,
+                                                  {'X', 'X', 'X', 'X'})));
 
-    for (size_t i = 1; i < kiss.s; i++)
+    for (size_t i = 0; i < kiss.s; i++)
     {
         for (size_t j = 0; j < kiss.s; j++)
         {
-            // implicantTable[i][j] = ;
+            if (j >= i ||
+                (table[i][0].output != table[i][1].output) ||
+                (table[j][0].output != table[j][1].output))
+            {
+                continue;
+            }
+            else
+            {
+                implicantTable[i][j].minimize = true;
+                implicantTable[i][j].nextStates[0] = table[i][0].nextState;
+                implicantTable[i][j].nextStates[1] = table[j][0].nextState;
+                implicantTable[i][j].nextStates[2] = table[i][1].nextState;
+                implicantTable[i][j].nextStates[3] = table[j][0].nextState;
+            }
         }
     }
 
-    // return implicantTable;
+    return implicantTable;
 }
