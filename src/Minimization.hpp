@@ -22,7 +22,8 @@ std::vector<std::vector<ProductTerm>> buildTable(kissData &kiss)
 }
 
 std::vector<std::vector<implicantTableDataPair>>
-buildImplicantTable(std::vector<std::vector<ProductTerm>> const &table, kissData &kiss)
+buildImplicantTable(
+    std::vector<std::vector<ProductTerm>> const &table, kissData &kiss)
 {
     std::vector<std::vector<implicantTableDataPair>>
         implicantTable(kiss.s,
@@ -108,4 +109,9 @@ void compatibilityCheck(
         implicantTable[isCompate.first][isCompate.second].minimize = false;
         isCompate = isAllCompatibility(implicantTable);
     }
+}
+
+void stateMerge(std::vector<std::vector<ProductTerm>> &table,
+                std::vector<std::vector<implicantTableDataPair>> &implicantTable)
+{
 }
