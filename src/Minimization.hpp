@@ -29,7 +29,7 @@ buildImplicantTable(vector<vector<ProductTerm>> const &table, kissData &kiss)
                        vector<implicantTableDataPair>(
                            kiss.s,
                            implicantTableDataPair(false,
-                                                  {'X', 'X', 'X', 'X'})));
+                                                  {'X'})));
 
     for (size_t i = 0; i < kiss.s; i++)
     {
@@ -44,10 +44,23 @@ buildImplicantTable(vector<vector<ProductTerm>> const &table, kissData &kiss)
             else
             {
                 implicantTable[i][j].minimize = true;
+                int outputIndex1 = 1, outputIndex2 = 0;
                 implicantTable[i][j].nextStates[0] = table[i][0].nextState;
-                implicantTable[i][j].nextStates[1] = table[j][0].nextState;
-                implicantTable[i][j].nextStates[2] = table[i][1].nextState;
-                implicantTable[i][j].nextStates[3] = table[j][0].nextState;
+                for (size_t i = 1; i < kiss.p / kiss.s; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        implicantTable[i][j].nextStates.push_back(
+                            table[i][outputIndex1].nextState);
+                        outputIndex1++;
+                    }
+                    else
+                    {
+                        implicantTable[i][j].nextStates.push_back(
+                            table[j][outputIndex2].nextState);
+                        outputIndex2++;
+                    }
+                }
             }
         }
     }
