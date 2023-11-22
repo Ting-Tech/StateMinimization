@@ -819,7 +819,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "Project"
+			"value" : "StateMinimization"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1118,7 +1118,7 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "Project_BINARY_DIR",
+			"name" : "StateMinimization_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1130,7 +1130,7 @@
 			"value" : "/Users/chengchienting/GitHub/StateMinimization/build"
 		},
 		{
-			"name" : "Project_IS_TOP_LEVEL",
+			"name" : "StateMinimization_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1142,7 +1142,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "Project_SOURCE_DIR",
+			"name" : "StateMinimization_SOURCE_DIR",
 			"properties" : 
 			[
 				{

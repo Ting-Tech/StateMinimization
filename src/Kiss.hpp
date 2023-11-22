@@ -1,16 +1,17 @@
+#pragma once
 #include <string>
 #include <vector>
 
 class ProductTerm
 {
 public:
-    string input;
+    std::string input;
     char currentState;
     char nextState;
     int output;
 
     ProductTerm() {}
-    ProductTerm(string i, char c, char n, int o)
+    ProductTerm(std::string i, char c, char n, int o)
         : input(i), currentState(c), nextState(n), output(o) {}
 };
 

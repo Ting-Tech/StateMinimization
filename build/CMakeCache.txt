@@ -142,7 +142,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=StateMinimization
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -210,13 +210,13 @@ CMAKE_TAPI:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/tapi
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-Project_BINARY_DIR:STATIC=/Users/chengchienting/GitHub/StateMinimization/build
+StateMinimization_BINARY_DIR:STATIC=/Users/chengchienting/GitHub/StateMinimization/build
 
 //Value Computed by CMake
-Project_IS_TOP_LEVEL:STATIC=ON
+StateMinimization_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/Users/chengchienting/GitHub/StateMinimization
+StateMinimization_SOURCE_DIR:STATIC=/Users/chengchienting/GitHub/StateMinimization
 
 
 ########################

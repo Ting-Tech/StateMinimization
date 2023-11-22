@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Project
+# Project: StateMinimization
 # Configurations: Debug
 # =============================================================================
 
@@ -40,6 +40,37 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /Users/chengchienting/GitHub/StateMinimization/build/
+# =============================================================================
+# Object build statements for EXECUTABLE target StateMinimization.out
+
+
+#############################################
+# Order-only phony target for StateMinimization.out
+
+build cmake_object_order_depends_target_StateMinimization.out: phony || CMakeFiles/StateMinimization.out.dir
+
+build CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o: CXX_COMPILER__StateMinimization.2eout_unscanned_Debug /Users/chengchienting/GitHub/StateMinimization/src/B11130225.cc || cmake_object_order_depends_target_StateMinimization.out
+  DEP_FILE = CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
+  OBJECT_DIR = CMakeFiles/StateMinimization.out.dir
+  OBJECT_FILE_DIR = CMakeFiles/StateMinimization.out.dir/src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target StateMinimization.out
+
+
+#############################################
+# Link the executable StateMinimization.out
+
+build StateMinimization.out: CXX_EXECUTABLE_LINKER__StateMinimization.2eout_Debug CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
+  OBJECT_DIR = CMakeFiles/StateMinimization.out.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = StateMinimization.out
+  TARGET_PDB = StateMinimization.out.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -75,12 +106,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/chengchienting/GitHub/StateMinimization/build
 
-build all: phony
-
-# =============================================================================
-# Unknown Build Time Dependencies.
-# Tell Ninja that they may appear as side effects of build rules
-# otherwise ordered by order-only dependencies.
+build all: phony StateMinimization.out
 
 # =============================================================================
 # Built-in targets

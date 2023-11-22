@@ -1,6 +1,6 @@
+#include "Kiss.hpp"
 #include <fstream>
 #include <sstream>
-#include "Kiss.hpp"
 
 void readKiss(std::vector<ProductTerm> &implicants,
               kissData &kiss,
@@ -53,7 +53,7 @@ void readKiss(std::vector<ProductTerm> &implicants,
 
         else
         {
-            string in;
+            std::string in;
             char current;
             char next;
             int out;
