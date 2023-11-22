@@ -1,4 +1,4 @@
-#include "Kiss.hpp"
+#include "../include/Kiss.h"
 #include <fstream>
 #include <sstream>
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "StateMinimization.hpp"
+#include "StateMinimization.cc"
 
 using namespace std;
 

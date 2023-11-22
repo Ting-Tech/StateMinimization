@@ -52,6 +52,7 @@ build cmake_object_order_depends_target_StateMinimization.out: phony || CMakeFil
 build CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o: CXX_COMPILER__StateMinimization.2eout_unscanned_Debug /Users/chengchienting/GitHub/StateMinimization/src/B11130225.cc || cmake_object_order_depends_target_StateMinimization.out
   DEP_FILE = CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk
+  INCLUDES = -I/Users/chengchienting/GitHub/StateMinimization/include
   OBJECT_DIR = CMakeFiles/StateMinimization.out.dir
   OBJECT_FILE_DIR = CMakeFiles/StateMinimization.out.dir/src
 

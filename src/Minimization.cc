@@ -1,5 +1,5 @@
-#include "Kiss.hpp"
-#include "Table.hpp"
+#include "../include/Kiss.h"
+#include "../include/Table.h"
 
 std::vector<std::vector<ProductTerm>> buildTable(kissData &kiss)
 {
@@ -47,9 +47,9 @@ buildImplicantTable(
                 implicantTable[i][j].minimize = true;
                 int outputIndex1 = 1, outputIndex2 = 0;
                 implicantTable[i][j].nextStates[0] = table[i][0].nextState;
-                for (size_t i = 1; i < kiss.p / kiss.s; i++)
+                for (size_t k = 1; k < kiss.p / kiss.s; k++)
                 {
-                    if (i % 2 == 0)
+                    if (k % 2 == 0)
                     {
                         implicantTable[i][j].nextStates.push_back(
                             table[i][outputIndex1].nextState);
@@ -103,7 +103,7 @@ isAllCompatibility(
 void compatibilityCheck(
     std::vector<std::vector<implicantTableDataPair>> &implicantTable)
 {
-    pair<int, int> isCompate = isAllCompatibility(implicantTable);
+    std::pair<int, int> isCompate = isAllCompatibility(implicantTable);
     while (isCompate.first != -1 && isCompate.second != -1)
     {
         implicantTable[isCompate.first][isCompate.second].minimize = false;

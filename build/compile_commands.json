@@ -1,7 +1,7 @@
 [
 {
   "directory": "/Users/chengchienting/GitHub/StateMinimization/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o -c /Users/chengchienting/GitHub/StateMinimization/src/B11130225.cc",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/chengchienting/GitHub/StateMinimization/include -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o -c /Users/chengchienting/GitHub/StateMinimization/src/B11130225.cc",
   "file": "/Users/chengchienting/GitHub/StateMinimization/src/B11130225.cc",
   "output": "CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o"
 }
