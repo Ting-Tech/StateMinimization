@@ -111,7 +111,42 @@ void compatibilityCheck(
     }
 }
 
+void mergeAllTable(int mergeIndex, char replaceChar,
+                   std::vector<std::vector<ProductTerm>> &table,
+                   std::vector<std::vector<implicantTableDataPair>> &implicantTable)
+{
+    for (size_t a = 0; a < implicantTable.size(); a++)
+    {
+        for (size_t b = 0; b < implicantTable.size(); b++)
+        {
+            if (a == mergeIndex || b == mergeIndex)
+            {
+                implicantTable[a][b].minimize = false;
+            }
+            for (size_t x = 0; x < implicantTable[a][b].nextStates.size(); x++)
+            {
+                if (implicantTable[a][b].nextStates[x] == (char)('a' + mergeIndex))
+                {
+                    implicantTable[a][b].nextStates[x] = replaceChar;
+                }
+            }
+        }
+    }
+
+    table.erase(table.begin() + mergeIndex);
+}
+
 void stateMerge(std::vector<std::vector<ProductTerm>> &table,
                 std::vector<std::vector<implicantTableDataPair>> &implicantTable)
 {
+    for (size_t i = 0; i < implicantTable.size(); i++)
+    {
+        for (size_t j = 0; j < implicantTable.size(); j++)
+        {
+            if (implicantTable[i][j].minimize)
+            {
+                mergeAllTable(i, (char)(j + 'a'), table, implicantTable);
+            }
+        }
+    }
 }

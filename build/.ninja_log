@@ -1,3 +1,19 @@
 # ninja log v5
-0	510	1700673022380367984	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
-512	599	1700673022469160109	StateMinimization.out	1df372d449f4ecf3
+1	494	1700717245489815403	CMakeFiles/StateMinimization.out.dir/src/Minimization.cc.o	75b2020e6071b351
+1	512	1700717245507076152	CMakeFiles/StateMinimization.out.dir/src/KissHandler.cc.o	6c4dfc98ea866798
+1	521	1700717245517582780	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
+1	564	1700717245561464503	CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o	356dbc0197392ffc
+3	584	1700717890689157744	CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o	356dbc0197392ffc
+3	585	1700717890689157827	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
+2	24	1700717943165451878	CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o	356dbc0197392ffc
+3	237	1700717943376741467	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
+237	278	1700717943417994460	StateMinimization.out	a27897a818523d9a
+3	321	1700717953960723639	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
+3	322	1700717953961078189	CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o	356dbc0197392ffc
+2	19	1700717989012831016	CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o	356dbc0197392ffc
+2	234	1700717989226946715	CMakeFiles/StateMinimization.out.dir/src/B11130225.cc.o	aeb458505618d3ba
+234	260	1700717989253823779	StateMinimization.out	a27897a818523d9a
+3	312	1700721435440829839	CMakeFiles/StateMinimization.out.dir/src/Minimization.cc.o	75b2020e6071b351
+312	403	1700721435530972460	StateMinimization.out	a27897a818523d9a
+3	686	1700721605628912631	CMakeFiles/StateMinimization.out.dir/src/Minimization.cc.o	75b2020e6071b351
+686	728	1700721605672579565	StateMinimization.out	a27897a818523d9a
