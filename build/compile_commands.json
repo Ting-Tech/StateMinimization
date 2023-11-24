@@ -1,18 +1,6 @@
 [
 {
   "directory": "/Users/chengchienting/GitHub/StateMinimization/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/chengchienting/GitHub/StateMinimization/include -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/StateMinimization.out.dir/src/KissHandler.cc.o -c /Users/chengchienting/GitHub/StateMinimization/src/KissHandler.cc",
-  "file": "/Users/chengchienting/GitHub/StateMinimization/src/KissHandler.cc",
-  "output": "CMakeFiles/StateMinimization.out.dir/src/KissHandler.cc.o"
-},
-{
-  "directory": "/Users/chengchienting/GitHub/StateMinimization/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/chengchienting/GitHub/StateMinimization/include -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/StateMinimization.out.dir/src/Minimization.cc.o -c /Users/chengchienting/GitHub/StateMinimization/src/Minimization.cc",
-  "file": "/Users/chengchienting/GitHub/StateMinimization/src/Minimization.cc",
-  "output": "CMakeFiles/StateMinimization.out.dir/src/Minimization.cc.o"
-},
-{
-  "directory": "/Users/chengchienting/GitHub/StateMinimization/build",
   "command": "/Library/Developer/CommandLineTools/usr/bin/c++ -I/Users/chengchienting/GitHub/StateMinimization/include -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk -o CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o -c /Users/chengchienting/GitHub/StateMinimization/src/StateMinimization.cc",
   "file": "/Users/chengchienting/GitHub/StateMinimization/src/StateMinimization.cc",
   "output": "CMakeFiles/StateMinimization.out.dir/src/StateMinimization.cc.o"
