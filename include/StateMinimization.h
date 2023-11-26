@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <fstream>
 #include <sstream>
 #include "./Kiss.h"
@@ -15,12 +16,15 @@ private:
 public:
     std::string fileName;
     std::string outKissName;
+    std::string outDotName;
     kissData kissFileData;
     std::vector<std::vector<ProductTerm>> kiss;
     std::vector<std::vector<ProductTerm>> table;
     std::vector<std::vector<implicantTableDataPair>> implicantTable;
 
-    StateMinimization(std::string const &name, std::string const &kissName);
+    StateMinimization(std::string const &name,
+                      std::string const &kissName,
+                      std::string const &dotName);
 
     void readKiss();
 

@@ -1,15 +1,19 @@
 #include "../include/StateMinimization.h"
 
 StateMinimization::StateMinimization(std::string const &name,
-                                     std::string const &kissName)
+                                     std::string const &kissName,
+                                     std::string const &dotName)
 {
     fileName = name;
     outKissName = kissName;
+    outDotName = dotName;
     readKiss();
     buildTable();
     buildImplicantTable();
     compatibilityCheck();
     stateMerge();
+    outputDot();
+    outputKiss();
 }
 
 void StateMinimization::readKiss()
@@ -232,7 +236,7 @@ void StateMinimization::outputKiss()
         for (size_t j = 0; j < table[i].size(); j++)
         {
             outKiss << j << " "
-                    << (char)(i + 'a') << " "
+                    << table[i][j].currentState << " "
                     << table[i][j].nextState << " "
                     << table[i][j].output << std::endl;
         }
@@ -242,4 +246,42 @@ void StateMinimization::outputKiss()
 
 void StateMinimization::outputDot()
 {
+    std::ofstream outDot;
+    outDot.open(outDotName);
+    std::vector<char> label;
+
+    outDot << "digraph STG {" << std::endl
+           << "\trankdir=LR;" << std::endl
+           << std::endl;
+
+    outDot << "\tINIT [shape=point];" << std::endl;
+    for (size_t i = 0; i < table.size(); i++)
+    {
+        for (size_t j = 0; j < table[i].size(); j++)
+        {
+            if (std::find(label.begin(), label.end(),
+                          (char)('a' + i)) != label.end())
+            {
+                label.push_back((char)('a' + i));
+            }
+            if (std::find(label.begin(), label.end(),
+                          table[i][j].nextState) != label.end())
+            {
+                label.push_back(table[i][j].nextState);
+            }
+        }
+    }
+
+    for (size_t i = 0; i < label.size(); i++)
+    {
+        outDot << label[i] << " "
+               << "[label=" << '"' << label[i] << '"' << "];" << std::endl;
+    }
+
+    outDot << std::endl
+           << "INIT -> " << kissFileData.r << ";" << std::endl;
+
+    for (size_t i = 0; i < table.size() * table[0].size(); i++)
+    {
+    }
 }
