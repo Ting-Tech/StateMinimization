@@ -1,4 +1,5 @@
 #pragma once
+
 #include <fstream>
 #include <sstream>
 #include "./Kiss.h"
@@ -13,12 +14,13 @@ private:
 
 public:
     std::string fileName;
+    std::string outKissName;
     kissData kissFileData;
     std::vector<std::vector<ProductTerm>> kiss;
     std::vector<std::vector<ProductTerm>> table;
     std::vector<std::vector<implicantTableDataPair>> implicantTable;
 
-    StateMinimization(std::string const &name);
+    StateMinimization(std::string const &name, std::string const &kissName);
 
     void readKiss();
 
@@ -29,4 +31,8 @@ public:
     void compatibilityCheck();
 
     void stateMerge();
+
+    void outputKiss();
+
+    void outputDot();
 };

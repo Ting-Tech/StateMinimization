@@ -1,8 +1,10 @@
 #include "../include/StateMinimization.h"
 
-StateMinimization::StateMinimization(std::string const &name)
+StateMinimization::StateMinimization(std::string const &name,
+                                     std::string const &kissName)
 {
     fileName = name;
+    outKissName = kissName;
     readKiss();
     buildTable();
     buildImplicantTable();
@@ -212,4 +214,32 @@ void StateMinimization::stateMerge()
             }
         }
     }
+}
+
+void StateMinimization::outputKiss()
+{
+    std::ofstream outKiss;
+    outKiss.open(outKissName);
+
+    outKiss << ".start_kiss" << std::endl;
+    outKiss << ".i " << kissFileData.input << std::endl;
+    outKiss << ".o " << kissFileData.output << std::endl;
+    outKiss << ".p " << table[0].size() * table.size() << std::endl;
+    outKiss << ".s " << table.size() << std::endl;
+    outKiss << ".r " << kissFileData.r << std::endl;
+    for (size_t i = 0; i < table.size(); i++)
+    {
+        for (size_t j = 0; j < table[i].size(); j++)
+        {
+            outKiss << j << " "
+                    << (char)(i + 'a') << " "
+                    << table[i][j].nextState << " "
+                    << table[i][j].output << std::endl;
+        }
+    }
+    outKiss << ".end_kiss" << std::endl;
+}
+
+void StateMinimization::outputDot()
+{
 }
