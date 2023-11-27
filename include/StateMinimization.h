@@ -4,16 +4,12 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <iostream>
 #include "./Kiss.h"
 #include "./Table.h"
 
 class StateMinimization
 {
-private:
-    std::pair<int, int> isAllCompatibility();
-
-    void mergeAllTable(int mergeIndex, char replaceChar);
-
 public:
     std::string fileName;
     std::string outKissName;
@@ -23,21 +19,19 @@ public:
     std::vector<std::vector<ProductTerm>> table;
     std::vector<std::vector<implicantTableDataPair>> implicantTable;
 
+    void readKiss();
+    void buildTable();
+    void buildImplicantTable();
+    void mergeAllTable(int mergeIndex, char replaceChar);
+    std::pair<int, int> isAllCompatibility();
+    void compatibilityCheck();
+    void stateMerge();
+    void outputKiss();
+    void outputDot();
+    void outTable();
+    void outImpTable();
+    void outKiss();
     StateMinimization(std::string const &name,
                       std::string const &kissName,
                       std::string const &dotName);
-
-    void readKiss();
-
-    std::vector<std::vector<ProductTerm>> buildTable();
-
-    std::vector<std::vector<implicantTableDataPair>> buildImplicantTable();
-
-    void compatibilityCheck();
-
-    void stateMerge();
-
-    void outputKiss();
-
-    void outputDot();
 };

@@ -1,21 +1,5 @@
 #include "../include/StateMinimization.h"
 
-StateMinimization::StateMinimization(std::string const &name,
-                                     std::string const &kissName,
-                                     std::string const &dotName)
-{
-    fileName = name;
-    outKissName = kissName;
-    outDotName = dotName;
-    readKiss();
-    buildTable();
-    buildImplicantTable();
-    compatibilityCheck();
-    stateMerge();
-    outputDot();
-    outputKiss();
-}
-
 void StateMinimization::readKiss()
 {
     std::string lineData;
@@ -32,7 +16,7 @@ void StateMinimization::readKiss()
 
         if (command == ".start_kiss")
         {
-            continue;
+            // continue;
         }
         else if (command == ".end_kiss")
         {
@@ -77,10 +61,9 @@ void StateMinimization::readKiss()
     }
 }
 
-std::vector<std::vector<ProductTerm>> StateMinimization::buildTable()
+void StateMinimization::buildTable()
 {
     char lastState = kissFileData.productTerms[0].currentState;
-    std::vector<std::vector<ProductTerm>> states;
 
     for (size_t i = 0; i < kissFileData.s; i++)
     {
@@ -91,14 +74,11 @@ std::vector<std::vector<ProductTerm>> StateMinimization::buildTable()
             productTerm = kissFileData.productTerms[i * kissFileData.s + j];
             state.push_back(productTerm);
         }
-        states.push_back(state);
+        table.push_back(state);
     }
-
-    return states;
 }
 
-std::vector<std::vector<implicantTableDataPair>>
-StateMinimization::buildImplicantTable()
+void StateMinimization::buildImplicantTable()
 {
     std::vector<std::vector<implicantTableDataPair>>
         implicantTable(kissFileData.s,
@@ -140,8 +120,6 @@ StateMinimization::buildImplicantTable()
             }
         }
     }
-
-    return implicantTable;
 }
 
 std::pair<int, int> StateMinimization::isAllCompatibility()
@@ -150,7 +128,7 @@ std::pair<int, int> StateMinimization::isAllCompatibility()
 
     for (size_t i = 0; i < implicantTable.size(); i++)
     {
-        for (size_t j = 0; j < implicantTable.size(); j++)
+        for (size_t j = 0; j < implicantTable[i].size(); j++)
         {
             if (!implicantTable[i][j].minimize)
                 continue;
@@ -187,7 +165,7 @@ void StateMinimization::mergeAllTable(int mergeIndex, char replaceChar)
 {
     for (size_t a = 0; a < implicantTable.size(); a++)
     {
-        for (size_t b = 0; b < implicantTable.size(); b++)
+        for (size_t b = 0; b < implicantTable[a].size(); b++)
         {
             if (a == mergeIndex || b == mergeIndex)
             {
@@ -210,7 +188,7 @@ void StateMinimization::stateMerge()
 {
     for (size_t i = 0; i < implicantTable.size(); i++)
     {
-        for (size_t j = 0; j < implicantTable.size(); j++)
+        for (size_t j = 0; j < implicantTable[i].size(); j++)
         {
             if (implicantTable[i][j].minimize)
             {
@@ -305,4 +283,62 @@ void StateMinimization::outputDot()
         }
     }
     outDot << '}';
+}
+
+void StateMinimization::outTable()
+{
+    for (auto &productTerms : table)
+    {
+        for (auto &productTerm : productTerms)
+        {
+            std::cout << productTerm.input << " "
+                      << productTerm.currentState << " "
+                      << productTerm.nextState << " "
+                      << productTerm.output << std::endl;
+        }
+    }
+}
+
+void StateMinimization::outImpTable()
+{
+    for (auto &implicantTableDataPair : implicantTable)
+    {
+        for (auto &imp : implicantTableDataPair)
+        {
+            std::cout << imp.minimize << " ";
+            for (auto &state : imp.nextStates)
+            {
+                std::cout << state << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+}
+
+void StateMinimization::outKiss()
+{
+    std::cout << kissFileData.input << std::endl
+              << kissFileData.output << std::endl
+              << kissFileData.p << std::endl
+              << kissFileData.s << std::endl
+              << kissFileData.r << std::endl;
+}
+
+StateMinimization::StateMinimization(std::string const &name,
+                                     std::string const &kissName,
+                                     std::string const &dotName)
+{
+    fileName = name;
+    outKissName = kissName;
+    outDotName = dotName;
+    readKiss();
+    outKiss();
+    // buildTable();
+    // outTable();
+    // buildImplicantTable();
+    // outImpTable();
+    // compatibilityCheck();
+    // stateMerge();
+    // outputKiss();
+    // outputDot();
 }

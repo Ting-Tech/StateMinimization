@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "StateMinimization.out::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-StateMinimization.out-Debug-13551d44a35c766a1b91.json",
+					"jsonFile" : "target-StateMinimization.out-Debug-9ad8b9265c315495c71f.json",
 					"name" : "StateMinimization.out",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/chengchienting/GitHub/StateMinimization/build",
-		"source" : "/Users/chengchienting/GitHub/StateMinimization"
+		"build" : "/home/allenting/StateMinimization/build",
+		"source" : "/home/allenting/StateMinimization"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 3
 	}
 }
