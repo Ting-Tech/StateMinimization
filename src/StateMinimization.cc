@@ -260,9 +260,9 @@ void StateMinimization::outputDot()
         for (size_t j = 0; j < table[i].size(); j++)
         {
             if (std::find(label.begin(), label.end(),
-                          (char)('a' + i)) != label.end())
+                          table[i][j].currentState) != label.end())
             {
-                label.push_back((char)('a' + i));
+                label.push_back(table[i][j].currentState);
             }
             if (std::find(label.begin(), label.end(),
                           table[i][j].nextState) != label.end())
@@ -281,7 +281,28 @@ void StateMinimization::outputDot()
     outDot << std::endl
            << "INIT -> " << kissFileData.r << ";" << std::endl;
 
-    for (size_t i = 0; i < table.size() * table[0].size(); i++)
+    for (size_t i = 0; i < table.size(); i++)
     {
+        std::map<char, std::vector<std::pair<std::string, int>>> stateMap;
+        for (size_t j = 0; j < table[i].size(); j++)
+        {
+            std::pair<std::string, int> outPair(table[i][j].input,
+                                                table[i][j].output);
+
+            stateMap[table[i][j].currentState].push_back(outPair);
+        }
+        for (const auto &pair : stateMap)
+        {
+            outDot << table[i][0].currentState << " -> "
+                   << pair.first << " [label=" << '"';
+            for (size_t k = 0; k < pair.second.size(); k++)
+            {
+                if (k != 0)
+                    outDot << ", ";
+                outDot << pair.second[k].first << '/' << pair.second[k].second;
+            }
+            outDot << '"' << "];" << std::endl;
+        }
     }
+    outDot << '}';
 }
