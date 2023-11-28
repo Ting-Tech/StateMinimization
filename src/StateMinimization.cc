@@ -100,7 +100,7 @@ bool isNextStateSame(const std::vector<std::vector<ProductTerm>> &t,
     for (size_t i = 1; i < t[index1].size(); i++)
     {
         char last = t[index1][0].nextState;
-        if (t[index1][i].nextState != t[index2][i].nextState)
+        if (t[index1][i].output != t[index2][i].output)
         {
             return true;
         }
@@ -115,7 +115,7 @@ void StateMinimization::buildImplicantTable()
                               kissFileData.s,
                               implicantTableDataPair(false, {{NULL}, {NULL}})));
 
-    for (size_t i = 1; i < kissFileData.s; i++)
+    for (size_t i = 0; i < kissFileData.s; i++)
     {
         for (size_t j = 0; j < kissFileData.s; j++)
         {
@@ -130,9 +130,9 @@ void StateMinimization::buildImplicantTable()
                 for (size_t x = 0; x < table[i].size(); x++)
                 {
                     implicantTable[i][j].nextStates[x][0] =
-                        table[j][x].nextState;
-                    implicantTable[i][j].nextStates[x][1] =
                         table[i][x].nextState;
+                    implicantTable[i][j].nextStates[x][1] =
+                        table[j][x].nextState;
                 }
             }
         }
@@ -379,7 +379,7 @@ StateMinimization::StateMinimization(std::string const name,
     outTable();
     buildImplicantTable();
     outImpTable();
-    // compatibilityCheck();
+    compatibilityCheck();
     // stateMerge();
     // outputKiss();
     // outputDot();
