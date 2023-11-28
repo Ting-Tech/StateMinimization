@@ -15,9 +15,9 @@ class implicantTableDataPair
 {
 public:
     bool minimize;
-    std::vector<char> nextStates;
+    std::vector<std::vector<char>> nextStates;
 
     implicantTableDataPair() {}
-    implicantTableDataPair(bool m, std::vector<char> n)
+    implicantTableDataPair(bool m, std::vector<std::vector<char>> n)
         : minimize(m), nextStates(n) {}
 };
