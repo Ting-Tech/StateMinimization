@@ -324,15 +324,17 @@ void StateMinimization::outKiss()
               << kissFileData.r << std::endl;
 }
 
-StateMinimization::StateMinimization(std::string const &name,
-                                     std::string const &kissName,
-                                     std::string const &dotName)
+StateMinimization::StateMinimization(std::string const name,
+                                     std::string const kissName,
+                                     std::string const dotName)
 {
     fileName = name;
     outKissName = kissName;
     outDotName = dotName;
-    readKiss();
-    outKiss();
+    std::cout << "kljhfakdfhksajfh";
+    std::cout << fileName << " " << outKissName << " " << outDotName << std::endl;
+    // readKiss();
+    // outKiss();
     // buildTable();
     // outTable();
     // buildImplicantTable();

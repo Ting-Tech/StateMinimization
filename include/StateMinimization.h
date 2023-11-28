@@ -31,7 +31,7 @@ public:
     void outTable();
     void outImpTable();
     void outKiss();
-    StateMinimization(std::string const &name,
-                      std::string const &kissName,
-                      std::string const &dotName);
+    StateMinimization(std::string const name,
+                      std::string const kissName,
+                      std::string const dotName);
 };
