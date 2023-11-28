@@ -10,13 +10,13 @@ void StateMinimization::readKiss()
     while (getline(inKissFile, lineData))
     {
         std::string command;
-        std::stringstream ss;
+        std::stringstream ss(lineData);
 
         ss >> command;
 
         if (command == ".start_kiss")
         {
-            // continue;
+            continue;
         }
         else if (command == ".end_kiss")
         {
@@ -40,7 +40,7 @@ void StateMinimization::readKiss()
 
         else if (command == ".s")
         {
-            ss >> kissFileData.r;
+            ss >> kissFileData.s;
         }
 
         else if (command == ".r")
@@ -317,26 +317,26 @@ void StateMinimization::outImpTable()
 
 void StateMinimization::outKiss()
 {
-    std::cout << kissFileData.input << std::endl
+    std::cout << "kiss.start" << std::endl
+              << kissFileData.input << std::endl
               << kissFileData.output << std::endl
               << kissFileData.p << std::endl
               << kissFileData.s << std::endl
-              << kissFileData.r << std::endl;
+              << kissFileData.r << std::endl
+              << "kiss.end" << std::endl;
 }
 
 StateMinimization::StateMinimization(std::string const name,
                                      std::string const kissName,
                                      std::string const dotName)
+    : fileName(name), outKissName(kissName), outDotName(dotName)
+
 {
-    fileName = name;
-    outKissName = kissName;
-    outDotName = dotName;
-    std::cout << "kljhfakdfhksajfh";
-    std::cout << fileName << " " << outKissName << " " << outDotName << std::endl;
-    // readKiss();
-    // outKiss();
-    // buildTable();
-    // outTable();
+    std::cout << &fileName << std::endl;
+    readKiss();
+    outKiss();
+    buildTable();
+    outTable();
     // buildImplicantTable();
     // outImpTable();
     // compatibilityCheck();
