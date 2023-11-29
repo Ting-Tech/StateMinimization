@@ -223,7 +223,7 @@ void StateMinimization::mergeAllTable(int mergeIndex, char replaceChar)
 
 void StateMinimization::stateMerge()
 {
-    std::vector<int> eraseIndex;
+    std::map<int, int> eraseIndex;
     for (size_t a = 0; a < implicantTable.size(); a++)
     {
         for (size_t b = 0; b < implicantTable[a].size(); b++)
@@ -237,27 +237,32 @@ void StateMinimization::stateMerge()
                     char target = implicantTable[a][b].nextStates[i][1];
                     char replaceC = implicantTable[a][b].nextStates[i][0];
                     int targetIndex = a;
+                    int replaceIndex = b;
 
                     mergeAllTable(b, replaceC);
-                    if (std::find(eraseIndex.begin(), eraseIndex.end(),
-                                  targetIndex) == eraseIndex.end())
-                        eraseIndex.push_back(targetIndex);
+                    eraseIndex[targetIndex] = replaceIndex;
                 }
             }
         }
     }
-    sort(eraseIndex.begin(), eraseIndex.end(), std::greater<int>());
-    for (auto &index : eraseIndex)
+
+    std::vector<std::pair<int, int>> vecPairs(eraseIndex.begin(), eraseIndex.end());
+    std::sort(vecPairs.begin(), vecPairs.end(),
+              std::greater<std::pair<int, int>>());
+    for (auto &index : vecPairs)
     {
-        table.erase(table.begin() + index);
-        char target = table[index][0].currentState;
+        table.erase(table.begin() + index.first);
+
+        char target = table[index.first][0].currentState;
+        char replace = table[index.second][0].currentState;
+
         for (size_t i = 0; i < table.size(); i++)
         {
             for (size_t j = 0; j < table[i].size(); j++)
             {
                 if (table[i][j].nextState == target)
                 {
-                    table[i][j].nextState = 'x';
+                    table[i][j].nextState = replace;
                 }
             }
         }
