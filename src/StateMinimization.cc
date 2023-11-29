@@ -113,7 +113,7 @@ void StateMinimization::buildImplicantTable()
     implicantTable.resize(kissFileData.s,
                           std::vector<implicantTableDataPair>(
                               kissFileData.s,
-                              implicantTableDataPair(false, {{NULL}, {NULL}})));
+                              implicantTableDataPair(false, {{}, {}})));
 
     for (size_t i = 0; i < kissFileData.s; i++)
     {
@@ -143,27 +143,27 @@ std::pair<int, int> StateMinimization::isAllCompatibility()
 {
     int row = -1, column = -1;
 
-    // for (size_t i = 0; i < implicantTable.size(); i++)
-    // {
-    //     for (size_t j = 0; j < implicantTable[i].size(); j++)
-    //     {
-    //         if (!implicantTable[i][j].minimize)
-    //             continue;
+    for (size_t i = 0; i < implicantTable.size(); i++)
+    {
+        for (size_t j = 0; j < implicantTable[i].size(); j++)
+        {
+            if (!implicantTable[i][j].minimize)
+                continue;
 
-    //         int state1 = implicantTable[i][j].nextStates[0] - 'a';
-    //         int state2 = implicantTable[i][j].nextStates[1] - 'a';
-    //         int state3 = implicantTable[i][j].nextStates[2] - 'a';
-    //         int state4 = implicantTable[i][j].nextStates[3] - 'a';
+            int state1 = implicantTable[i][j].nextStates[0][0] - 'a';
+            int state2 = implicantTable[i][j].nextStates[0][1] - 'a';
+            int state3 = implicantTable[i][j].nextStates[1][0] - 'a';
+            int state4 = implicantTable[i][j].nextStates[1][1] - 'a';
 
-    //         if (implicantTable[state1][state2].minimize ||
-    //             implicantTable[state3][state4].minimize)
-    //         {
-    //             row = i;
-    //             column = j;
-    //             return std::make_pair(row, column);
-    //         }
-    //     }
-    // }
+            if (implicantTable[state1][state2].minimize ||
+                implicantTable[state3][state4].minimize)
+            {
+                row = i;
+                column = j;
+                return std::make_pair(row, column);
+            }
+        }
+    }
 
     return std::make_pair(row, column);
 }
@@ -380,6 +380,7 @@ StateMinimization::StateMinimization(std::string const name,
     buildImplicantTable();
     outImpTable();
     compatibilityCheck();
+    outImpTable();
     // stateMerge();
     // outputKiss();
     // outputDot();
