@@ -125,14 +125,26 @@ void StateMinimization::buildImplicantTable()
             }
             if (j < i)
             {
+                implicantTable[i][j].minimize = true;
+
                 implicantTable[i][j].nextStates[0].resize(table[i].size(), 'a');
                 implicantTable[i][j].nextStates[1].resize(table[i].size(), 'a');
                 for (size_t x = 0; x < table[i].size(); x++)
                 {
-                    implicantTable[i][j].nextStates[x][0] =
-                        table[i][x].nextState;
-                    implicantTable[i][j].nextStates[x][1] =
-                        table[j][x].nextState;
+                    if (table[i][x].nextState < table[j][x].nextState)
+                    {
+                        implicantTable[i][j].nextStates[x][0] =
+                            table[j][x].nextState;
+                        implicantTable[i][j].nextStates[x][1] =
+                            table[i][x].nextState;
+                    }
+                    else
+                    {
+                        implicantTable[i][j].nextStates[x][0] =
+                            table[i][x].nextState;
+                        implicantTable[i][j].nextStates[x][1] =
+                            table[j][x].nextState;
+                    }
                 }
             }
         }
@@ -141,40 +153,41 @@ void StateMinimization::buildImplicantTable()
 
 std::pair<int, int> StateMinimization::isAllCompatibility()
 {
-    int row = -1, column = -1;
-
     for (size_t i = 0; i < implicantTable.size(); i++)
     {
         for (size_t j = 0; j < implicantTable[i].size(); j++)
         {
-            if (!implicantTable[i][j].minimize)
-                continue;
-
-            int state1 = implicantTable[i][j].nextStates[0][0] - 'a';
-            int state2 = implicantTable[i][j].nextStates[0][1] - 'a';
-            int state3 = implicantTable[i][j].nextStates[1][0] - 'a';
-            int state4 = implicantTable[i][j].nextStates[1][1] - 'a';
-
-            if (implicantTable[state1][state2].minimize ||
-                implicantTable[state3][state4].minimize)
+            if (implicantTable[i][j].minimize)
             {
-                row = i;
-                column = j;
-                return std::make_pair(row, column);
+                for (size_t k = 0; k < implicantTable[i][j].nextStates.size(); k++)
+                {
+                    int index1 = (int)(implicantTable[i][j].nextStates[k][0] - 'a');
+                    int index2 = (int)(implicantTable[i][j].nextStates[k][1] - 'a');
+                    if (index2 > 0 && index1 < kissFileData.s - 1)
+                    {
+                        if (!implicantTable[index1][index2].minimize)
+                        {
+                            return std::make_pair(i, j);
+                        }
+                    }
+                }
             }
         }
     }
 
-    return std::make_pair(row, column);
+    return std::make_pair(-1, -1);
 }
 
 void StateMinimization::compatibilityCheck()
 {
-    std::pair<int, int> isCompate = isAllCompatibility();
-    while (isCompate.first != -1 && isCompate.second != -1)
+    for (;;)
     {
+        std::pair<int, int> isCompate = isAllCompatibility();
+        if (isCompate.first == -1 || isCompate.second == -1)
+        {
+            break;
+        }
         implicantTable[isCompate.first][isCompate.second].minimize = false;
-        isCompate = isAllCompatibility();
     }
 }
 
@@ -330,9 +343,9 @@ void StateMinimization::outImpTable()
             std::cout << imp.minimize << " ";
             for (auto &states : imp.nextStates)
             {
-                for (size_t i = 0; i < states.size(); i++)
+                for (auto &state : states)
                 {
-                    std::cout << states[i];
+                    std::cout << state;
                 }
                 std::cout << '-';
             }
