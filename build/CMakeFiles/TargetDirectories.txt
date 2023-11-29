@@ -1,3 +1,0 @@
-/home/allenting/StateMinimization/build/CMakeFiles/StateMinimization.out.dir
-/home/allenting/StateMinimization/build/CMakeFiles/edit_cache.dir
-/home/allenting/StateMinimization/build/CMakeFiles/rebuild_cache.dir
