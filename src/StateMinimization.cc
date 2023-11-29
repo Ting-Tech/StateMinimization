@@ -159,27 +159,24 @@ std::pair<int, int> StateMinimization::isAllCompatibility()
         {
             if (implicantTable[i][j].minimize)
             {
-                std::cout << implicantTable[i][j].nextStates.size() << std::endl;
-                for (size_t k = 0; k < implicantTable[i][j].nextStates.size(); k++)
+                for (size_t k = 0;
+                     k < implicantTable[i][j].nextStates.size(); k++)
                 {
-                    int index1 = (int)(implicantTable[i][j].nextStates[k][0] - 'a');
-                    int index2 = (int)(implicantTable[i][j].nextStates[k][1] - 'a');
-
-                    std::cout << index1 << " " << index2 << std::endl;
+                    int index1 =
+                        (int)(implicantTable[i][j].nextStates[k][0] - 'a');
+                    int index2 =
+                        (int)(implicantTable[i][j].nextStates[k][1] - 'a');
 
                     if ((index1 != 0) && (index2 < index1))
                     {
-                        std::cout << " True " << std::endl;
                         if (!implicantTable[index1][index2].minimize)
                         {
                             return std::make_pair(i, j);
                         }
                     }
                 }
-                std::cout << std::endl;
             }
         }
-        std::cout << std::endl;
     }
 
     return std::make_pair(-1, -1);
@@ -200,36 +197,68 @@ void StateMinimization::compatibilityCheck()
 
 void StateMinimization::mergeAllTable(int mergeIndex, char replaceChar)
 {
-    // for (size_t a = 0; a < implicantTable.size(); a++)
-    // {
-    //     for (size_t b = 0; b < implicantTable[a].size(); b++)
-    //     {
-    //         if (a == mergeIndex || b == mergeIndex)
-    //         {
-    //             implicantTable[a][b].minimize = false;
-    //         }
-    //         for (size_t x = 0; x < implicantTable[a][b].nextStates.size(); x++)
-    //         {
-    //             if (implicantTable[a][b].nextStates[x] == (char)('a' + mergeIndex))
-    //             {
-    //                 implicantTable[a][b].nextStates[x] = replaceChar;
-    //             }
-    //         }
-    //     }
-    // }
-
-    // table.erase(table.begin() + mergeIndex);
+    for (size_t x = 0; x < implicantTable.size(); x++)
+    {
+        for (size_t y = 0; y < implicantTable[x].size(); y++)
+        {
+            if (x == mergeIndex || y == mergeIndex)
+            {
+                implicantTable[x][y].minimize = false;
+            }
+            for (size_t j = 0; j < implicantTable[x][y].nextStates.size(); j++)
+            {
+                for (size_t k = 0;
+                     k < implicantTable[x][y].nextStates[j].size(); k++)
+                {
+                    if (implicantTable[x][y].nextStates[j][k] ==
+                        (char)(mergeIndex + 'a'))
+                    {
+                        implicantTable[x][y].nextStates[j][k] = replaceChar;
+                    }
+                }
+            }
+        }
+    }
 }
 
 void StateMinimization::stateMerge()
 {
-    for (size_t i = 0; i < implicantTable.size(); i++)
+    std::vector<int> eraseIndex;
+    for (size_t a = 0; a < implicantTable.size(); a++)
     {
-        for (size_t j = 0; j < implicantTable[i].size(); j++)
+        for (size_t b = 0; b < implicantTable[a].size(); b++)
         {
-            if (implicantTable[i][j].minimize)
+            if (implicantTable[a][b].minimize)
             {
-                mergeAllTable(i, (char)(j + 'a'));
+                implicantTable[a][b].minimize = false;
+                for (size_t i = 0;
+                     i < implicantTable[a][b].nextStates.size(); i++)
+                {
+                    char target = implicantTable[a][b].nextStates[i][1];
+                    char replaceC = implicantTable[a][b].nextStates[i][0];
+                    int targetIndex = a;
+
+                    mergeAllTable(b, replaceC);
+                    if (std::find(eraseIndex.begin(), eraseIndex.end(),
+                                  targetIndex) == eraseIndex.end())
+                        eraseIndex.push_back(targetIndex);
+                }
+            }
+        }
+    }
+    sort(eraseIndex.begin(), eraseIndex.end(), std::greater<int>());
+    for (auto &index : eraseIndex)
+    {
+        table.erase(table.begin() + index);
+        char target = table[index][0].currentState;
+        for (size_t i = 0; i < table.size(); i++)
+        {
+            for (size_t j = 0; j < table[i].size(); j++)
+            {
+                if (table[i][j].nextState == target)
+                {
+                    table[i][j].nextState = 'x';
+                }
             }
         }
     }
@@ -401,7 +430,9 @@ StateMinimization::StateMinimization(std::string const name,
     outImpTable();
     compatibilityCheck();
     outImpTable();
-    // stateMerge();
-    // outputKiss();
-    // outputDot();
+    stateMerge();
+    outTable();
+    outImpTable();
+    outputKiss();
+    outputDot();
 }
