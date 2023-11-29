@@ -159,20 +159,27 @@ std::pair<int, int> StateMinimization::isAllCompatibility()
         {
             if (implicantTable[i][j].minimize)
             {
+                std::cout << implicantTable[i][j].nextStates.size() << std::endl;
                 for (size_t k = 0; k < implicantTable[i][j].nextStates.size(); k++)
                 {
                     int index1 = (int)(implicantTable[i][j].nextStates[k][0] - 'a');
                     int index2 = (int)(implicantTable[i][j].nextStates[k][1] - 'a');
-                    if (index2 > 0 && index1 < kissFileData.s - 1)
+
+                    std::cout << index1 << " " << index2 << std::endl;
+
+                    if ((index1 != 0) && (index2 < index1))
                     {
+                        std::cout << " True " << std::endl;
                         if (!implicantTable[index1][index2].minimize)
                         {
                             return std::make_pair(i, j);
                         }
                     }
                 }
+                std::cout << std::endl;
             }
         }
+        std::cout << std::endl;
     }
 
     return std::make_pair(-1, -1);
