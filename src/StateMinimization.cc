@@ -309,12 +309,12 @@ void StateMinimization::outputDot()
         for (size_t j = 0; j < table[i].size(); j++)
         {
             if (std::find(label.begin(), label.end(),
-                          table[i][j].currentState) != label.end())
+                          table[i][j].currentState) == label.end())
             {
                 label.push_back(table[i][j].currentState);
             }
             if (std::find(label.begin(), label.end(),
-                          table[i][j].nextState) != label.end())
+                          table[i][j].nextState) == label.end())
             {
                 label.push_back(table[i][j].nextState);
             }
@@ -323,27 +323,30 @@ void StateMinimization::outputDot()
 
     for (size_t i = 0; i < label.size(); i++)
     {
-        outDot << label[i] << " "
+        outDot << "\t" << label[i] << " "
                << "[label=" << '"' << label[i] << '"' << "];" << std::endl;
     }
 
     outDot << std::endl
+           << "\t"
            << "INIT -> " << kissFileData.r << ";" << std::endl;
 
     for (size_t i = 0; i < table.size(); i++)
     {
-        std::map<char, std::vector<std::pair<std::string, int>>> stateMap;
+        std::map<std::pair<char, char>, std::vector<std::pair<std::string, int>>> stateMap;
         for (size_t j = 0; j < table[i].size(); j++)
         {
             std::pair<std::string, int> outPair(table[i][j].input,
                                                 table[i][j].output);
 
-            stateMap[table[i][j].currentState].push_back(outPair);
+            stateMap[std::make_pair(table[i][j].currentState,
+                                    table[i][j].nextState)]
+                .push_back(outPair);
         }
         for (const auto &pair : stateMap)
         {
-            outDot << table[i][0].currentState << " -> "
-                   << pair.first << " [label=" << '"';
+            outDot << "\t" << pair.first.first << "->"
+                   << pair.first.second << " [label=" << '"';
             for (size_t k = 0; k < pair.second.size(); k++)
             {
                 if (k != 0)
