@@ -6,12 +6,12 @@ class ProductTerm
 {
 public:
     std::string input;
-    char currentState;
-    char nextState;
+    std::string currentState;
+    std::string nextState;
     int output;
 
     ProductTerm() {}
-    ProductTerm(std::string i, char c, char n, int o)
+    ProductTerm(std::string i, std::string c, std::string n, int o)
         : input(i), currentState(c), nextState(n), output(o) {}
 };
 

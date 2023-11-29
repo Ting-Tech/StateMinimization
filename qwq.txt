@@ -1,0 +1,2 @@
+./build/StateMinimization.out ./example/myTest/testcase/test1/test1.kiss ./example/myTest/testcase/test1/out.kiss ./example/myTest/testcase/test1/out.dot
+./build/StateMinimization.out ./example/myTest/kiss/case5/case5.kiss ./example/myTest/kiss/case5/out.kiss ./example/myTest/kiss/case5/out.dot
