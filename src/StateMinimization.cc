@@ -70,10 +70,10 @@ void StateMinimization::readKiss()
             }
         }
     }
-    for (auto &a : symbals)
-    {
-        std::cout << a << std::endl;
-    }
+    // for (auto &a : symbals)
+    // {
+    //     std::cout << a << std::endl;
+    // }
 }
 
 int searchIndex(const std::vector<std::string> &vec, const std::string &target)
@@ -167,16 +167,16 @@ void StateMinimization::buildImplicantTable()
                         if (searchIndex(symbals, table[i][x].nextState) <
                             searchIndex(symbals, table[j][x].nextState))
                         {
-                            implicantTable[i][j].nextStates[x][0] =
+                            implicantTable[i][j].nextStates[0][x] =
                                 table[j][x].nextState;
-                            implicantTable[i][j].nextStates[x][1] =
+                            implicantTable[i][j].nextStates[1][x] =
                                 table[i][x].nextState;
                         }
                         else
                         {
-                            implicantTable[i][j].nextStates[x][0] =
+                            implicantTable[i][j].nextStates[0][x] =
                                 table[i][x].nextState;
-                            implicantTable[i][j].nextStates[x][1] =
+                            implicantTable[i][j].nextStates[1][x] =
                                 table[j][x].nextState;
                         }
                     }
@@ -195,12 +195,12 @@ std::pair<int, int> StateMinimization::isAllCompatibility()
             if (implicantTable[i][j].minimize)
             {
                 for (size_t k = 0;
-                     k < implicantTable[i][j].nextStates.size(); k++)
+                     k < implicantTable[i][j].nextStates[0].size(); k++)
                 {
                     int index1 =
-                        searchIndex(symbals, implicantTable[i][j].nextStates[k][0]);
+                        searchIndex(symbals, implicantTable[i][j].nextStates[0][k]);
                     int index2 =
-                        searchIndex(symbals, implicantTable[i][j].nextStates[k][1]);
+                        searchIndex(symbals, implicantTable[i][j].nextStates[1][k]);
 
                     if ((index1 != 0) && (index2 < index1))
                     {
@@ -416,13 +416,13 @@ void StateMinimization::outImpTable()
         for (auto &imp : implicantTableDataPair)
         {
             std::cout << imp.minimize << " ";
-            for (auto &states : imp.nextStates)
+            for (size_t i = 0; i < imp.nextStates[0].size(); i++)
             {
-                for (auto &state : states)
+                for (size_t j = 0; j < imp.nextStates.size(); j++)
                 {
-                    std::cout << state;
+                    std::cout << imp.nextStates[j][i] << '-';
                 }
-                std::cout << '-';
+                std::cout << '_';
             }
             std::cout << '|';
         }
@@ -460,7 +460,6 @@ StateMinimization::StateMinimization(std::string const name,
     : fileName(name), outKissName(kissName), outDotName(dotName)
 
 {
-    std::cout << &fileName << std::endl;
     readKiss();
     outKiss();
     buildTable();
