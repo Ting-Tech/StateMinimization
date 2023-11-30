@@ -68,6 +68,12 @@ GCC/Clang
 .end_kiss
 ```
 
+#### Input dot
+
+```dot
+
+```
+
 #### Output kiss
 
 ```kiss
@@ -330,7 +336,6 @@ digraph STG {
 10 S4 S3 1
 11 S4 S4 1
 .end_kiss
-
 ```
 
 #### Output kiss
@@ -351,24 +356,23 @@ digraph STG {
 10 S2 S1 1
 11 S2 S2 1
 .end_kiss
-
 ```
 
 #### Output dot
 
 ```kiss
 digraph STG {
-	rankdir=LR;
+    rankdir=LR;
 
-	INIT [shape=point];
-	S1 [label="S1"];
-	S2 [label="S2"];
+    INIT [shape=point];
+    S1 [label="S1"];
+    S2 [label="S2"];
 
-	INIT -> S1;
-	S1 -> S1 [label="00/0, 10/0"];
-	S1 -> S2 [label="01/1, 11/0"];
-	S2 -> S1 [label="00/1, 10/1"];
-	S2 -> S2 [label="01/0, 11/1"];
+    INIT -> S1;
+    S1 -> S1 [label="00/0, 10/0"];
+    S1 -> S2 [label="01/1, 11/0"];
+    S2 -> S1 [label="00/1, 10/1"];
+    S2 -> S2 [label="01/0, 11/1"];
 }
 ```
 
@@ -402,7 +406,6 @@ digraph STG {
 0 H   H 0
 1 H   A 0
 .end_kiss
-
 ```
 
 #### Output kiss
@@ -425,33 +428,32 @@ digraph STG {
 0 G B 1
 1 G A 0
 .end_kiss
-
 ```
 
 #### Output dot
 
 ```kiss
 digraph STG {
-	rankdir=LR;
+    rankdir=LR;
 
-	INIT [shape=point];
-	A [label="A"];
-	B [label="B"];
-	D [label="D"];
-	H [label="H"];
-	G [label="G"];
+    INIT [shape=point];
+    A [label="A"];
+    B [label="B"];
+    D [label="D"];
+    H [label="H"];
+    G [label="G"];
 
-	INIT -> A;
-	A -> A [label="1/0"];
-	A -> B [label="0/0"];
-	B -> A [label="1/0"];
-	B -> D [label="0/0"];
-	D -> G [label="1/0"];
-	D -> H [label="0/0"];
-	H -> A [label="1/0"];
-	H -> H [label="0/0"];
-	G -> A [label="1/0"];
-	G -> B [label="0/1"];
+    INIT -> A;
+    A -> A [label="1/0"];
+    A -> B [label="0/0"];
+    B -> A [label="1/0"];
+    B -> D [label="0/0"];
+    D -> G [label="1/0"];
+    D -> H [label="0/0"];
+    H -> A [label="1/0"];
+    H -> H [label="0/0"];
+    G -> A [label="1/0"];
+    G -> B [label="0/1"];
 }
 ```
 
@@ -501,29 +503,28 @@ digraph STG {
 0 f a 1
 1 f a 0
 .end_kiss
-
 ```
 
 #### Output dot
 
 ```kiss
 digraph STG {
-	rankdir=LR;
+    rankdir=LR;
 
-	INIT [shape=point];
-	a [label="a"];
-	b [label="b"];
-	d [label="d"];
-	f [label="f"];
+    INIT [shape=point];
+    a [label="a"];
+    b [label="b"];
+    d [label="d"];
+    f [label="f"];
 
-	INIT -> a;
-	a -> a [label="0/0"];
-	a -> b [label="1/0"];
-	b -> a [label="0/0"];
-	b -> d [label="1/1"];
-	d -> d [label="0/1"];
-	d -> f [label="1/1"];
-	f -> a [label="0/1, 1/0"];
+    INIT -> a;
+    a -> a [label="0/0"];
+    a -> b [label="1/0"];
+    b -> a [label="0/0"];
+    b -> d [label="1/1"];
+    d -> d [label="0/1"];
+    d -> f [label="1/1"];
+    f -> a [label="0/1, 1/0"];
 }
 ```
 
@@ -565,7 +566,6 @@ digraph STG {
 10 f c 1
 11 f d 1
 .end_kiss
-
 ```
 
 #### Output kiss
@@ -594,34 +594,33 @@ digraph STG {
 10 e a 1
 11 e b 1
 .end_kiss
-
 ```
 
 #### Output dot
 
 ```kiss
 digraph STG {
-	rankdir=LR;
+    rankdir=LR;
 
-	INIT [shape=point];
-	a [label="a"];
-	b [label="b"];
-	d [label="d"];
-	e [label="e"];
+    INIT [shape=point];
+    a [label="a"];
+    b [label="b"];
+    d [label="d"];
+    e [label="e"];
 
-	INIT -> b;
-	a -> a [label="00/0, 10/1"];
-	a -> b [label="01/1"];
-	a -> d [label="11/0"];
-	b -> a [label="00/0"];
-	b -> d [label="01/1, 10/0"];
-	b -> e [label="11/1"];
-	d -> a [label="00/0, 10/1"];
-	d -> b [label="01/1"];
-	d -> d [label="11/1"];
-	e -> a [label="01/0, 10/1"];
-	e -> b [label="11/1"];
-	e -> d [label="00/0"];
+    INIT -> b;
+    a -> a [label="00/0, 10/1"];
+    a -> b [label="01/1"];
+    a -> d [label="11/0"];
+    b -> a [label="00/0"];
+    b -> d [label="01/1, 10/0"];
+    b -> e [label="11/1"];
+    d -> a [label="00/0, 10/1"];
+    d -> b [label="01/1"];
+    d -> d [label="11/1"];
+    e -> a [label="01/0, 10/1"];
+    e -> b [label="11/1"];
+    e -> d [label="00/0"];
 }
 ```
 
@@ -677,33 +676,105 @@ digraph STG {
 0 f e 0
 1 f b 0
 .end_kiss
-
 ```
 
 #### Output dot
 
 ```kiss
 digraph STG {
-	rankdir=LR;
+    rankdir=LR;
 
-	INIT [shape=point];
-	a [label="a"];
-	b [label="b"];
-	h [label="h"];
-	e [label="e"];
-	f [label="f"];
+    INIT [shape=point];
+    a [label="a"];
+    b [label="b"];
+    h [label="h"];
+    e [label="e"];
+    f [label="f"];
 
-	INIT -> a;
-	a -> a [label="0/0"];
-	a -> b [label="1/0"];
-	b -> a [label="1/0"];
-	b -> h [label="0/1"];
-	h -> e [label="0/1"];
-	h -> f [label="1/1"];
-	e -> b [label="1/0"];
-	e -> e [label="0/1"];
-	f -> b [label="1/0"];
-	f -> e [label="0/0"];
+    INIT -> a;
+    a -> a [label="0/0"];
+    a -> b [label="1/0"];
+    b -> a [label="1/0"];
+    b -> h [label="0/1"];
+    h -> e [label="0/1"];
+    h -> f [label="1/1"];
+    e -> b [label="1/0"];
+    e -> e [label="0/1"];
+    f -> b [label="1/0"];
+    f -> e [label="0/0"];
+}
+```
+
+## Mine case
+
+[example/case1](./example/testcase/case1)
+
+#### Input kiss
+
+```kiss
+.start_kiss
+.i 1
+.o 1
+.p 12
+.s 6
+.r a
+0 a a 0
+1 a b 0
+0 b c 0
+1 b d 1
+0 c a 0
+1 c c 0
+0 d e 0
+1 d f 1
+0 e a 0
+1 e c 0
+0 f a 0
+1 f c 0
+.end_kiss
+```
+
+#### Output kiss
+
+```kiss
+.start_kiss
+.i 1
+.o 1
+.p 10
+.s 5
+.r a
+0 a a 0
+1 a b 0
+0 b c 0
+1 b d 0
+0 c a 0
+1 c d 0
+0 d e 0
+1 d d 1
+0 e a 0
+1 e d 1
+.end_kiss
+```
+
+#### Output dot
+
+```kiss
+digraph STG {
+    rankdir=LR;
+
+    INIT [shape=point];
+    a [label="a"];
+    b [label="b"];
+    c [label="c"];
+    d [label="d"];
+
+    INIT -> a;
+    a -> a [label="0/0"];
+    a -> b [label="1/0"];
+    b -> c [label="0/0"];
+    b -> d [label="1/1"];
+    c -> a [label="0/0"];
+    c -> c [label="1/0"];
+    d -> c [label="0/0, 1/1"];
 }
 ```
 
