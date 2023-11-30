@@ -21,6 +21,6 @@ struct kissData
     int output;
     int p;
     int s;
-    char r;
+    std::string r;
     std::vector<ProductTerm> productTerms;
 };
