@@ -334,7 +334,7 @@ void StateMinimization::outputKiss()
     outKiss << ".i " << kissFileData.input << std::endl;
     outKiss << ".o " << kissFileData.output << std::endl;
     outKiss << ".p " << table[0].size() * table.size() << std::endl;
-    outKiss << ".s " << kissFileData.s << std::endl;
+    outKiss << ".s " << table.size() << std::endl;
     outKiss << ".r " << kissFileData.r << std::endl;
     for (size_t i = 0; i < table.size(); i++)
     {
@@ -403,7 +403,7 @@ void StateMinimization::outputDot()
         }
         for (const auto &pair : stateMap)
         {
-            outDot << "\t" << pair.first.first << "->"
+            outDot << "\t" << pair.first.first << " -> "
                    << pair.first.second << " [label=" << '"';
             for (size_t k = 0; k < pair.second.size(); k++)
             {
@@ -488,16 +488,16 @@ StateMinimization::StateMinimization(std::string const name,
 
 {
     readKiss();
-    outKiss();
+    // outKiss();
     buildTable();
-    outTable();
+    // outTable();
     buildImplicantTable();
-    outImpTable();
+    // outImpTable();
     compatibilityCheck();
-    outImpTable();
+    // outImpTable();
     stateMerge();
-    outTable();
-    outImpTable();
+    // outTable();
+    // outImpTable();
     outputKiss();
     outputDot();
 }
