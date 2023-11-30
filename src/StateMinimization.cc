@@ -298,6 +298,33 @@ void StateMinimization::stateMerge()
     }
 }
 
+std::string decimalToBinary(const std::string &decimalString)
+{
+    // 將輸入的十進制字串轉換為整數
+    int decimalNumber = std::stoi(decimalString);
+
+    if (decimalNumber == 0)
+    {
+        return "0"; // Special case for zero
+    }
+
+    std::string binaryResult = "";
+
+    while (decimalNumber > 0)
+    {
+        // 取得餘數（0 或 1）並轉換為字元
+        char remainder = '0' + (decimalNumber % 2);
+
+        // 將餘數插入到字串的最前面
+        binaryResult = remainder + binaryResult;
+
+        // 進行短除法，將十進制數字除以 2
+        decimalNumber /= 2;
+    }
+
+    return binaryResult;
+}
+
 void StateMinimization::outputKiss()
 {
     std::ofstream outKiss;
@@ -313,7 +340,7 @@ void StateMinimization::outputKiss()
     {
         for (size_t j = 0; j < table[i].size(); j++)
         {
-            outKiss << j << " "
+            outKiss << table[i][j].input << " "
                     << table[i][j].currentState << " "
                     << table[i][j].nextState << " "
                     << table[i][j].output << std::endl;
