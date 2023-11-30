@@ -11,4 +11,4 @@ set(SRC_LIST
     ${PROJECT_SOURCE_DIR}/src/StateMinimization.cc
     ${PROJECT_SOURCE_DIR}/src/B11130225.cc)
 
-add_executable(${PROJECT_NAME}.out ${SRC_LIST})
+add_executable(${PROJECT_NAME} ${SRC_LIST})
