@@ -23,7 +23,7 @@ GCC/Clang
 ## Run
 
 ```bash
-./StateMinimization[input_kiss] [output_kiss] [output_dot]
+./StateMinimization [input_kiss] [output_kiss] [output_dot]
 ```
 
 ## Feature

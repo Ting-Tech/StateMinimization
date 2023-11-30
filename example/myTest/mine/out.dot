@@ -16,3 +16,4 @@ digraph STG {
 	c -> c [label="1/0"];
 	d -> c [label="0/0, 1/1"];
 }
+
